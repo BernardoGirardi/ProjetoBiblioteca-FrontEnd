@@ -1,10 +1,10 @@
 import './App.css';
+import Menu from './componentes/Menu';
 
 function App() {
   return (
     <div>
-      <h1>É os guri pae</h1>
-      <button className='btn btn-primary'>Teste</button>
+      <Menu />
     </div>
   );
 }
