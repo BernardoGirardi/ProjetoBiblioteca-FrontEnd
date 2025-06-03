@@ -1,10 +1,35 @@
+import {BrowserRouter, Routes, Route,} from 'react-router-dom';
 import './App.css';
 import Menu from './componentes/Menu';
+import FormCategoria from './paginas/FormCategoria';
+import Home from './paginas/Home';
+import ListaCategoria from './paginas/ListaCategoria';
+import ListaAutor from './paginas/ListaAutor';
+import FormAutor from './paginas/FormAutor';
+import FormEditora from './paginas/FormEditora';
+import ListaEditora from './paginas/ListaEditora';
 
 function App() {
   return (
     <div>
-      <Menu />
+      <BrowserRouter>
+        <Menu/>
+        
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/listaCategoria' element={<ListaCategoria/>}/>
+            <Route path='/cadastroCategoria' element={<FormCategoria/>}/>
+            <Route path='/cadastroCategoria/:id' element={<FormCategoria/>}/>
+            <Route path='/listaautor' element={<ListaAutor/>}/>
+            <Route path='/cadastroautor' element={<FormAutor/>}/>
+            <Route path='/cadastroautor/:id' element={<FormAutor/>}/>
+            <Route path='/listaeditora' element={<ListaEditora/>}/>
+            <Route path='/cadastroeditora' element={<FormEditora/>}/>
+            <Route path='/cadastroeditora/:id' element={<FormEditora/>}/>
+            <Route path='*' element={<Home/>}/>
+          </Routes>
+
+      </BrowserRouter>
     </div>
   );
 }
