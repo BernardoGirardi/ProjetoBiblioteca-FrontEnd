@@ -60,6 +60,11 @@ export default function Menu(){
                   Usuários
                 </a>
               </li>
+              <li>
+                <a className="dropdown-item" href="/listaemprestimo">
+                  Empréstimos
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
