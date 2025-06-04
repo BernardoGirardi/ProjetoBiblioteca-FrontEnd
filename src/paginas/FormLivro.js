@@ -10,51 +10,78 @@ export default function FormLivro(){
     const [titulo, setTitulo] = useState('');
     const [edicao, setEdicao] = useState('');
     const [paginas, setPaginas] = useState('');
-        const [publicacao, setPublicacao] = useState('');
+    const [publicacao, setPublicacao] = useState('');
     const [foto, setFoto] = useState('');
     const [localizacao, setLocalizacao] = useState('');    
     const [resumo, setResumo] = useState('');
     const [ativo, setAtivo] = useState('');
-    const [condicaofisica, setCnpj] = useState('');
-    const [emprestado, setEndereco] = useState('');    
-    const [ideditora, setNomeEditora] = useState('');
-    const [idcategoria, setCnpj] = useState('');
+    const [condicaofisica, setCondicaofisica] = useState('');
+    const [emprestado, setEmprestado] = useState('');    
+    const [ideditora, setIdeditora] = useState('');
+    const [idcategoria, setIdcategoria] = useState('');
 
     const voltar = () => {
-        navegacao('/listaeditora');
+        navegacao('/listalivro');
     };
 
     const excluir = async () => {
-        await axios.delete(`http://localhost:6969/editora/${id}`);
+        await axios.delete(`http://localhost:6969/livro/${id}`);
         voltar();
     };
     
     const selecionar = async () => {
-        let { data } = await axios.get(`http://localhost:6969/editora/${id}`);
-        setNomeEditora(data.nomeeditora);
-        setCnpj(data.cnpj);
-        setEndereco(data.endereco);
+        let { data } = await axios.get(`http://localhost:6969/livro/${id}`);
+        setTitulo(data.titulo);
+        setEdicao(data.edicao);
+        setPaginas(data.paginas);
+        setPublicacao(data.publicacao);
+        setFoto(data.foto);
+        setLocalizacao(data.localizacao);
+        setResumo(data.resumo);
+        setAtivo(data.ativo);
+        setCondicaofisica(data.condicaofisica);
+        setEmprestado(data.emprestado);
+        setIdeditora(data.ideditora);
+        setIdcategoria(data.idcategoria);
     };
 
     const alterar = async () => {
         let body = {
-            "nomeeditora": nomeeditora,
-            "cnpj": cnpj,
-            "endereco": endereco
+        "titulo": titulo,
+        "edicao": edicao,
+        "paginas": paginas,
+        "publicacao": publicacao,
+        "foto": foto,
+        "localizacao": localizacao,
+        "resumo": resumo,
+        "ativo": ativo,
+        "condicaofisica": condicaofisica,
+        "emprestado": emprestado,
+        "ideditora": ideditora,
+        "idcategoria": idcategoria 
         };
 
-        await axios.put(`http://localhost:6969/editora/${id}`, body);
+        await axios.put(`http://localhost:6969/livro/${id}`, body);
         voltar();
     };
 
     const inserir = async () => {
         let body = {
-            "nomeeditora": nomeeditora,
-            "cnpj": cnpj,
-            "endereco": endereco
+        "titulo": titulo,
+        "edicao": edicao,
+        "paginas": paginas,
+        "publicacao": publicacao,
+        "foto": foto,
+        "localizacao": localizacao,
+        "resumo": resumo,
+        "ativo": ativo,
+        "condicaofisica": condicaofisica,
+        "emprestado": emprestado,
+        "ideditora": ideditora,
+        "idcategoria": idcategoria
         };
 
-        await axios.post(`http://localhost:6969/editora`, body);
+        await axios.post(`http://localhost:6969/livro`, body);
         voltar();
     };
 
@@ -75,7 +102,7 @@ export default function FormLivro(){
     
     return(
         <div>
-            <TituloCadastro id={id} titulo="editora"/>
+            <TituloCadastro id={id} titulo="livro"/>
            <form>
                 {id && (
                 <div className="mb-3">
@@ -88,40 +115,144 @@ export default function FormLivro(){
                     value={id}
                     />
                 </div>
-                )};
+                )}
                 <div className="mb-3">
                     <label className="form-label">
-                    Nome da Editora
+                    Titulo
                     </label>
                     <input
                     type="text"
                     className="form-control"
-                    value={nomeeditora}
-                    onChange={(event) => setNomeEditora(event.target.value)}
+                    value={titulo}
+                    onChange={(event) => setTitulo(event.target.value)}
                     />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">
-                    CNPJ
+                    Edição
                     </label>
                     <input
                     type="text"
                     className="form-control"
-                    value={cnpj}
-                    onChange={(event) => setCnpj(event.target.value)}
+                    value={edicao}
+                    onChange={(event) => setEdicao(event.target.value)}
                     />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">
-                    Endereço
+                    Páginas
                     </label>
                     <input
                     type="text"
                     className="form-control"
-                    value={endereco}
-                    onChange={(event) => setEndereco(event.target.value)}
+                    value={paginas}
+                    onChange={(event) => setPaginas(event.target.value)}
                     />
                 </div>
+                <div className="mb-3">
+                    <label className="form-label">
+                    Publicação
+                    </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    value={publicacao}
+                    onChange={(event) => setPublicacao(event.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">
+                    Foto (Url da foto)
+                    </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    value={foto}
+                    onChange={(event) => setFoto(event.target.value)}
+                    />
+                <img src={foto} className="img-thumbnail" style={{width: '250px'}}></img>
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">
+                    Localização
+                    </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    value={localizacao}
+                    onChange={(event) => setLocalizacao(event.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">
+                    Resumo
+                    </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    value={resumo}
+                    onChange={(event) => setResumo(event.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">
+                    Ativo
+                    </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    value={ativo}
+                    onChange={(event) => setAtivo(event.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">
+                    Condição física
+                    </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    value={condicaofisica}
+                    onChange={(event) => setCondicaofisica(event.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">
+                    Emprestado
+                    </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    value={emprestado}
+                    onChange={(event) => setEmprestado(event.target.value)}
+                    />
+                </div>
+                {ideditora && (
+                <div className="mb-3">
+                    <label className="form-label">
+                    ID Editora
+                    </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    value={ideditora}
+                    onChange={(event) => setIdeditora(event.target.value)}
+                    />
+                </div>
+                )}
+                {idcategoria && (
+                <div className="mb-3">
+                    <label className="form-label">
+                    ID Categoria
+                    </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    value={idcategoria}
+                    onChange={(event) => setIdcategoria(event.target.value)}
+                    />
+                </div>
+                )}
                 <button type="button" className="btn btn-primary" onClick={() => salvar()}>
                     Salvar
                 </button>
